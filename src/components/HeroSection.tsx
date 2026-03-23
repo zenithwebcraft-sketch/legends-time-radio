@@ -1,6 +1,10 @@
 import heroBg from "@/assets/hero-bg.jpg";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onPlayClick?: () => void;
+}
+
+const HeroSection = ({ onPlayClick }: HeroSectionProps) => {
   return (
     <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -43,12 +47,12 @@ const HeroSection = () => {
         </div>
 
         {/* CTA */}
-        <a
-          href="#player"
+        <button
+          onClick={onPlayClick}
           className="inline-block border-2 border-gold bg-gold/10 text-gold font-display text-lg px-10 py-4 tracking-[0.15em] uppercase transition-all duration-300 hover:bg-[#8B0000] hover:border-[#8B0000] hover:shadow-[0_0_30px_rgba(139,0,0,0.4)]"
         >
           Escucha en Vivo
-        </a>
+        </button>
       </div>
 
       {/* Bottom fade */}

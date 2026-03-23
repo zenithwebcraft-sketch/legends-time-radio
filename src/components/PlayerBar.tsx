@@ -1,11 +1,74 @@
-import { useState } from "react";
-import { Volume2, VolumeX } from "lucide-react";
+import { useState, useRef, forwardRef, useImperativeHandle } from "react";
+import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 
-const PlayerBar = () => {
+export interface PlayerBarHandle {
+  play: () => void;
+  pause: () => void;
+  toggle: () => void;
+}
+
+const PlayerBar = forwardRef<PlayerBarHandle>((_, ref) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(0.8);
+
+  useImperativeHandle(ref, () => ({
+    play: () => {
+      if (audioRef.current) {
+        audioRef.current.play();
+        setIsPlaying(true);
+      }
+    },
+    pause: () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    },
+    toggle: () => {
+      if (audioRef.current) {
+        if (isPlaying) {
+          audioRef.current.pause();
+        } else {
+          audioRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+      }
+    },
+  }));
+
+  const togglePlay = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = parseFloat(e.target.value);
+    setVolume(val);
+    if (audioRef.current) {
+      audioRef.current.volume = val;
+    }
+    if (val === 0) setIsMuted(true);
+    else setIsMuted(false);
+  };
 
   const toggleMute = () => {
-    setIsMuted(!isMuted);
+    if (audioRef.current) {
+      if (isMuted) {
+        audioRef.current.volume = volume || 0.8;
+        setIsMuted(false);
+      } else {
+        audioRef.current.volume = 0;
+        setIsMuted(true);
+      }
+    }
   };
 
   return (
@@ -20,9 +83,18 @@ const PlayerBar = () => {
           </div>
         </div>
 
-        {/* Center: Player iframe */}
+        {/* Center: Play Button */}
         <div className="flex items-center justify-center">
-          <iframe src='https://cloudstream2036.conectarhosting.com/cp/widgets/player/single/?p=8272' width='300' height='50' frameBorder='0' scrolling='no' style={{border:'none', background:'transparent'}} />
+          <button
+            onClick={togglePlay}
+            className="w-12 h-12 rounded-full border-2 border-gold flex items-center justify-center transition-all hover:bg-gold/20 hover:shadow-[0_0_20px_hsl(43_52%_54%/0.3)]"
+          >
+            {isPlaying ? (
+              <Pause className="w-5 h-5 text-gold" fill="currentColor" />
+            ) : (
+              <Play className="w-5 h-5 text-gold ml-0.5" fill="currentColor" />
+            )}
+          </button>
         </div>
 
         {/* Right: Volume */}
@@ -35,14 +107,23 @@ const PlayerBar = () => {
             min="0"
             max="1"
             step="0.01"
-            value={isMuted ? 0 : 0.8}
-            onChange={() => {}}
+            value={isMuted ? 0 : volume}
+            onChange={handleVolume}
             className="w-20 sm:w-28 accent-gold h-1 cursor-pointer"
           />
         </div>
       </div>
+
+      {/* Native Audio Element */}
+      <audio
+        ref={audioRef}
+        src="https://cloudstream2036.conectarhosting.com/8272/stream"
+        preload="none"
+      />
     </div>
   );
-};
+});
+
+PlayerBar.displayName = "PlayerBar";
 
 export default PlayerBar;
