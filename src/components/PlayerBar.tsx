@@ -72,14 +72,16 @@ const PlayerBar = forwardRef<PlayerBarHandle>((_, ref) => {
   };
 
   return (
-    <div id="player" className="fixed bottom-0 left-0 right-0 z-50 bg-[#0a0a0a] border-t border-[#222]">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <div id="player" className="fixed bottom-0 left-0 right-0 z-50 bg-[#0a0a0a] border-t border-[#222] h-[72px]">
+      <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between gap-4">
         {/* Left: Station + Live dot */}
         <div className="flex items-center gap-3 min-w-0 shrink-0">
-          <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse-live inline-block" />
           <div className="hidden sm:block">
             <p className="text-gold font-display text-sm tracking-wider">LEGENDS IN THE TIME</p>
-            <p className="text-muted-foreground text-xs">EN VIVO</p>
+            <div className="flex items-center gap-2">
+              <span className={`w-2 h-2 rounded-full bg-red-600 ${isPlaying ? 'animate-pulse' : ''} inline-block`} />
+              <p className="text-muted-foreground text-xs">EN VIVO</p>
+            </div>
           </div>
         </div>
 
@@ -87,12 +89,12 @@ const PlayerBar = forwardRef<PlayerBarHandle>((_, ref) => {
         <div className="flex items-center justify-center">
           <button
             onClick={togglePlay}
-            className="w-12 h-12 rounded-full border-2 border-gold flex items-center justify-center transition-all hover:bg-gold/20 hover:shadow-[0_0_20px_hsl(43_52%_54%/0.3)]"
+            className="w-12 h-12 rounded-full border-2 border-[#C9A84C] flex items-center justify-center transition-all hover:shadow-[0_0_20px_hsl(43_52%_54%/0.3)]"
           >
             {isPlaying ? (
-              <Pause className="w-5 h-5 text-gold" fill="currentColor" />
+              <Pause className="w-5 h-5 text-white" fill="currentColor" />
             ) : (
-              <Play className="w-5 h-5 text-gold ml-0.5" fill="currentColor" />
+              <Play className="w-5 h-5 text-white ml-0.5" fill="currentColor" />
             )}
           </button>
         </div>
