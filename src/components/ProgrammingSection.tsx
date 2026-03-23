@@ -33,7 +33,7 @@ const ProgrammingSection = () => {
               <h3 className="font-display text-xl text-gold mb-2 tracking-wider group-hover:text-gold-glow transition-colors">
                 {program.name}
               </h3>
-              <p className="text-primary font-body text-sm font-semibold mb-4 tracking-wider">
+              <p className="text-primary font-body text-sm font-medium mb-4 tracking-wider">
                 {program.time}
               </p>
               <p className="text-muted-foreground font-body text-sm leading-relaxed">

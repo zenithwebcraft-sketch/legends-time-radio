@@ -32,9 +32,9 @@ const ContactSection = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={social.label}
-              className="w-12 h-12 border border-border flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold transition-all duration-300"
+              className="w-12 h-12 border border-border flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold hover:scale-[1.2] transition-all duration-300"
             >
-              <social.icon size={20} />
+              <social.icon size={32} />
             </a>
           ))}
         </div>

@@ -19,7 +19,7 @@ const VideoSection = () => {
           {videos.map((video) => (
             <div
               key={video.id}
-              className="relative aspect-video bg-card border border-border overflow-hidden group cursor-pointer"
+              className="relative aspect-video bg-[#1a1a1a] border border-[rgba(201,168,76,0.3)] rounded-lg overflow-hidden group cursor-pointer"
             >
               {/* Placeholder dark frame */}
               <div className="absolute inset-0 bg-gradient-to-br from-secondary to-background flex items-center justify-center">
@@ -29,7 +29,7 @@ const VideoSection = () => {
               </div>
               {/* Title overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <p className="text-foreground font-body text-sm">{video.title}</p>
+                <p className="text-[#C9A84C] font-body text-sm">{video.title}</p>
               </div>
             </div>
           ))}

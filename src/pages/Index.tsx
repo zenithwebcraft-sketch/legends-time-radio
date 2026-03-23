@@ -3,6 +3,7 @@ import PlayerBar from "@/components/PlayerBar";
 import AboutSection from "@/components/AboutSection";
 import ProgrammingSection from "@/components/ProgrammingSection";
 import VideoSection from "@/components/VideoSection";
+import ChatSection from "@/components/ChatSection";
 import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
@@ -12,6 +13,7 @@ const Index = () => {
       <AboutSection />
       <ProgrammingSection />
       <VideoSection />
+      <ChatSection />
       <ContactSection />
       <PlayerBar />
     </div>

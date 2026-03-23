@@ -1,43 +1,15 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 const PlayerBar = () => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.8);
   const [isMuted, setIsMuted] = useState(false);
 
-  const togglePlay = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseFloat(e.target.value);
-    setVolume(val);
-    if (audioRef.current) audioRef.current.volume = val;
-    if (val === 0) setIsMuted(true);
-    else setIsMuted(false);
-  };
-
   const toggleMute = () => {
-    if (!audioRef.current) return;
-    if (isMuted) {
-      audioRef.current.volume = volume || 0.8;
-      setIsMuted(false);
-    } else {
-      audioRef.current.volume = 0;
-      setIsMuted(true);
-    }
+    setIsMuted(!isMuted);
   };
 
   return (
-    <div id="player" className="fixed bottom-0 left-0 right-0 z-50 bg-secondary border-t border-border backdrop-blur-sm">
+    <div id="player" className="fixed bottom-0 left-0 right-0 z-50 bg-[#0a0a0a] border-t border-[#222]">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         {/* Left: Station + Live dot */}
         <div className="flex items-center gap-3 min-w-0 shrink-0">
@@ -48,23 +20,9 @@ const PlayerBar = () => {
           </div>
         </div>
 
-        {/* Center: Play button */}
-        <div className="flex items-center gap-4">
-          <button
-            onClick={togglePlay}
-            className="w-12 h-12 rounded-full border-2 border-gold flex items-center justify-center transition-all hover:bg-gold/20 hover:shadow-[0_0_20px_hsl(43_52%_54%/0.3)]"
-          >
-            {isPlaying ? (
-              <svg className="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 24 24">
-                <rect x="6" y="4" width="4" height="16" />
-                <rect x="14" y="4" width="4" height="16" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5 text-gold ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                <polygon points="5,3 19,12 5,21" />
-              </svg>
-            )}
-          </button>
+        {/* Center: Player iframe */}
+        <div className="flex items-center justify-center">
+          <iframe src='https://cloudstream2036.conectarhosting.com/cp/widgets/player/single/?p=8272' width='300' height='50' frameBorder='0' scrolling='no' style={{border:'none', background:'transparent'}} />
         </div>
 
         {/* Right: Volume */}
@@ -77,15 +35,12 @@ const PlayerBar = () => {
             min="0"
             max="1"
             step="0.01"
-            value={isMuted ? 0 : volume}
-            onChange={handleVolume}
+            value={isMuted ? 0 : 0.8}
+            onChange={() => {}}
             className="w-20 sm:w-28 accent-gold h-1 cursor-pointer"
           />
         </div>
       </div>
-
-      {/* Audio element - replace src with actual stream URL */}
-      <audio ref={audioRef} src="https://stream-placeholder.example.com/live" preload="none" />
     </div>
   );
 };

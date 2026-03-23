@@ -2,7 +2,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <img
         src={heroBg}
@@ -45,7 +45,7 @@ const HeroSection = () => {
         {/* CTA */}
         <a
           href="#player"
-          className="inline-block border-2 border-gold bg-gold/10 text-gold font-display text-lg px-10 py-4 tracking-[0.15em] uppercase transition-all duration-300 hover:bg-gold/20 hover:shadow-[0_0_30px_hsl(43_52%_54%/0.3)]"
+          className="inline-block border-2 border-gold bg-gold/10 text-gold font-display text-lg px-10 py-4 tracking-[0.15em] uppercase transition-all duration-300 hover:bg-[#8B0000] hover:border-[#8B0000] hover:shadow-[0_0_30px_rgba(139,0,0,0.4)]"
         >
           Escucha en Vivo
         </a>
