@@ -10,7 +10,7 @@ const ContactSection = () => {
 
         {/* WhatsApp Button */}
         <a
-          href="https://wa.me/1234567890"
+          href="https://wa.me/584127172911"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 bg-[hsl(142,70%,35%)] hover:bg-[hsl(142,70%,40%)] text-[hsl(0,0%,100%)] font-body font-semibold px-8 py-4 rounded transition-all duration-300 hover:shadow-[0_0_20px_hsl(142_70%_35%/0.4)] mb-10"
@@ -23,8 +23,8 @@ const ContactSection = () => {
         <div className="flex items-center justify-center gap-6 mb-10">
           {[
             { icon: Facebook, href: "#", label: "Facebook" },
-            { icon: Instagram, href: "#", label: "Instagram" },
-            { icon: Youtube, href: "#", label: "YouTube" },
+            { icon: Instagram, href: "https://www.instagram.com/legendsinthetime/", label: "Instagram" },
+            { icon: Youtube, href: "https://www.youtube.com/@legendsinthetime2320", label: "YouTube" },
           ].map((social) => (
             <a
               key={social.label}

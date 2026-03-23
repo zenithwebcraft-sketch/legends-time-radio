@@ -1,10 +1,10 @@
 import { Play } from "lucide-react";
 
 const videos = [
-  { id: "placeholder1", title: "Rock Clásico en Vivo" },
-  { id: "placeholder2", title: "Especial Black Sabbath" },
-  { id: "placeholder3", title: "Lo Mejor de los 70s" },
-  { id: "placeholder4", title: "Heavy Metal Nights" },
+  { id: "7VrBHaGzTBQ", title: "Rock Clásico en Vivo" },
+  { id: "1SeAMn5ZjVA", title: "Especial Black Sabbath" },
+  { id: "FBPdKP8crKs", title: "Lo Mejor de los 70s" },
+  { id: "6U3qCUlRUzU", title: "Heavy Metal Nights" },
 ];
 
 const VideoSection = () => {
@@ -19,18 +19,15 @@ const VideoSection = () => {
           {videos.map((video) => (
             <div
               key={video.id}
-              className="relative aspect-video bg-[#1a1a1a] border border-[rgba(201,168,76,0.3)] rounded-lg overflow-hidden group cursor-pointer"
+              className="relative aspect-video bg-[#1a1a1a] border border-[rgba(201,168,76,0.3)] rounded-lg overflow-hidden"
             >
-              {/* Placeholder dark frame */}
-              <div className="absolute inset-0 bg-gradient-to-br from-secondary to-background flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full border-2 border-gold flex items-center justify-center transition-all group-hover:bg-gold/20 group-hover:scale-110 group-hover:shadow-[0_0_30px_hsl(43_52%_54%/0.3)]">
-                  <Play className="w-6 h-6 text-gold ml-1" fill="currentColor" />
-                </div>
-              </div>
-              {/* Title overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <p className="text-[#C9A84C] font-body text-sm">{video.title}</p>
-              </div>
+              <iframe
+                src={`https://www.youtube.com/embed/${video.id}`}
+                title={video.title}
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             </div>
           ))}
         </div>
