@@ -40,9 +40,22 @@ const ContactSection = () => {
         </div>
 
         {/* Copyright */}
-        <p className="text-muted-foreground font-body text-sm">
-          © 2026 Legends in the Time Radio — Guarenas, Venezuela
-        </p>
+        <div className="text-center">
+          <p className="text-muted-foreground font-body text-sm">
+            © 2026 Legends in the Time Radio — Guarenas, Venezuela
+          </p>
+          <p className="font-body text-[13px] mt-1">
+            Hecho con <span className="text-red-600">❤️</span> por{" "}
+            <a
+              href="https://zenithwebcraft.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C9A84C] no-underline hover:underline"
+            >
+              Zenith WebCraft
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
